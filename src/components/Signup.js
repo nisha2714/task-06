@@ -1,13 +1,17 @@
+
+
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { app } from "../firebase";
 import { useNavigate } from "react-router-dom";
+
+const auth = getAuth(app);
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const auth = getAuth(app);
 
   const handleSignup = async () => {
     try {
@@ -20,47 +24,46 @@ const Signup = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-4 shadow" style={{ width: "400px", borderRadius: "10px" }}>
-        <h1 className="text-center mb-4" style={{ fontSize: "30px" }}>Sign Up</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              aria-describedby="emailHelp"
-              style={{ borderRadius: "5px", borderColor: "#ced4da" }}
-            />
-            <div id="emailHelp" className="form-text">We'll never share your email with anyone.</div>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ borderRadius: "5px", borderColor: "#ced4da" }}
-            />
-          </div>
+    <div className="ms-2">
+    <div >
+      <h1 style={{fontSize:38}} className="mt-4 mb-4" >
+          Sign Up
+        </h1>
+        
+        <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" value={email}
+              onChange={(e) => setEmail(e.target.value)} aria-describedby="emailHelp"/>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" value={password}
+              onChange={(e) => setPassword(e.target.value)}/>
+  </div>
+          
+          
           <button
-            type="submit"
             onClick={handleSignup}
-            className="btn btn-primary w-100"
-            style={{ borderRadius: "5px" }}
-          >
+            className="btn btn-primary"
+            >
             Sign Up
           </button>
-        </form>
-        <p className="text-center mt-3">
-          Already have an account?{" "}
-          <a href="/" className="text-primary">Log in</a>
-        </p>
+        
+       
+
+
+        <div >
+          <p >
+            Already have an account?{" "}
+            <a
+              href="/"
+              className=" hover:underline"
+            >
+              Log in
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
